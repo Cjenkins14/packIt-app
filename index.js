@@ -31,7 +31,9 @@ function dateFormat(startDate, endDate) {
 
 // function to format query
 function formatQuery(params) {
-    
+    const queryItem = Object.keys(params).map(
+        key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+    return queryItem.join('&')
 }
 
 // function to fetch from API
