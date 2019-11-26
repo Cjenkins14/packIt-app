@@ -6,20 +6,19 @@ function handleStart() {
     $('.start').on('click', function (event) {
         $('.user-input').removeClass('hidden');
         $('.home').addClass('hidden');
-        watchForm();
     })
 
 }
 
 // function to handle submit
 function watchForm() {
-    $('form').submit(function (event) {
+    $('#js-submit').on('click', function (event) {
         event.preventDefault();
-    })
-    let postCode = $('input[#js-zip]').val();
-    let startDate = $('input[#js-start-date]').val();
-    let endDate = $('input[#js-end-date]').val();
-    formatQuery(postCode);
+    let postCode = $("input[name~='zip-code']").val();
+    let startDate = $("input[name~='start-date']").val();
+    let endDate = $("input[name~='end-date]").val();
+})
+    getData(postCode);
     dateFormat(startDate, endDate);
 };
 
@@ -40,7 +39,7 @@ function formatQuery(params) {
 function getData(postCode) {
     const params = {
         key: apiKey,
-        stateCode: postCode
+        postal_code: postCode
     }
     const queryString = formatQuery(params)
     const url = baseUrl + '?' + queryString;
@@ -81,4 +80,9 @@ function nowReset() {
 
 }
 
-$(handleStart)
+function runProg() {
+    handleStart();
+    
+}
+
+runProg();
