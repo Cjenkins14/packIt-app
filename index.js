@@ -38,7 +38,22 @@ function formatQuery(params) {
 
 // function to fetch from API
 function getData(postCode) {
-    
+    const params = {
+        key: apiKey,
+        stateCode: postCode
+    }
+    const queryString = formatQuery(params)
+    const url = baseUrl + '?' + queryString;
+    console.log(url);
+
+    fetch(url)
+        .then(response => {
+            if(response.ok) {
+            return response.json();
+            }
+            throw new Error(response.statusText);
+        })
+        .then(responseJson => displayResults(responseJson))
 }
 
 // function to render results
