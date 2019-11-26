@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>packIt App</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header>
+        <h1>PackIt</h1>
+    </header>
+
+    <div class="home">
+        
+        <p>Find the gear to wear</p>
+        <button type="start">Start</button>
+    </div>
+
+    <div class="user-input hidden">
+        <form>
+            <label for="zip-code">Postal Code</label>
+            <input type="text" name="zip-code" id="js-zip">
+
+            <label for="start-date"></label>
+            <input type="text"  name="start-date" id="js-start-date">
+
+            <label for="end-date"></label>
+            <input type="text" name="end-date" id="js-end-date">
+
+            <input type="submit" id="js-submit">
+
+            <div class="js-error-msg hidden"></div>
+        </form>
+    </div>
+
+    <div class="result hidden">
+        <ul class="js-hi-lo">
+        </ul>
+
+        <h3>Checklist</h3>
+
+        <ul class="js-gear-items">
+        </ul>
+
+        <p>Need gear? Click on an icon!</p>
+
+        <div class="js-sierra-results hidden"></div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>    
+    <script src="index.js"></script>
+</body>
+</html>
