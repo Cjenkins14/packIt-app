@@ -12,14 +12,14 @@ function handleStart() {
 
 // function to handle submit
 function watchForm() {
-    $('#js-submit').on('click', function (event) {
+    $('.js-submit').on('click', (event => {
         event.preventDefault();
-    let postCode = $("input[name~='zip-code']").val();
-    let startDate = $("input[name~='start-date']").val();
-    let endDate = $("input[name~='end-date]").val();
-})
-    getData(postCode);
-    dateFormat(startDate, endDate);
+        const postCode = $("input[name='zip-code']").val();
+        const startDate = $("input[name='start-date']").val();
+        const endDate = $("input[name='end-date']").val();
+        getData(postCode);
+        dateFormat(startDate, endDate);
+    }))
 };
 
 // function to format dates
@@ -82,7 +82,7 @@ function nowReset() {
 
 function runProg() {
     handleStart();
-    
+    watchForm();
 }
 
 runProg();
