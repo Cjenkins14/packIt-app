@@ -18,7 +18,6 @@ function watchForm() {
         const startDate = $("input[name='start-date']").val();
         const endDate = $("input[name='end-date']").val();
         getData(postCode, startDate, endDate);
-        dateFormat(startDate, endDate);
     }))
 };
 
@@ -59,7 +58,8 @@ function checkDates(responseJson,startDate, endDate) {
     let end = new Date(endDate)
     for(let i = 0; i < `${responseJson["data"].length}`; i++) {
         let thisDate = new Date(`${responseJson["data"][i]["datetime"]}`)
-        if(thisDate === start && thisDate <= end) {
+        if(thisDate >= start && thisDate <= end) {
+// set start time and thisdate time to equal, not on same time schedule. update start time to match thisdate time
             displayResults(i, responseJson)
         }
         else {
@@ -70,7 +70,13 @@ function checkDates(responseJson,startDate, endDate) {
 
 // function to render results 
 function displayResults(i, responseJson) {
-    console.log(`${responseJson["data"][i]["max_temp, min_temp"]}`)
+    let tempHi = `${responseJson["data"][i]["max_temp"]}`
+    let tempLo = `${responseJson["data"][i]["min_temp"]}`
+    $('.js-hi-lo').append(
+        `<li>${tempHi}/${tempLo}</li>`);
+        $('.result').removeClass('hidden');
+
+
     // if(min_temp < 20, append winter items)
     // // append tempuratures to .js-hi-lo `li>[max_temp]/[min_temp]</li`
     // else if(min_temp > 50, append spring items etc )
