@@ -25,7 +25,8 @@ function watchForm() {
 
 // function to format dates
 function dateFormat(startDate, endDate) {
-    
+    let start = new Date(startDate);
+    let end = new Date(endDate);
 };
 
 // function to format query
