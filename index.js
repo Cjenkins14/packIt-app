@@ -15,8 +15,8 @@ function watchForm() {
     $('.js-submit').on('click', (event => {
         event.preventDefault();
         const postCode = $("input[name='zip-code']").val();
-        const startDate = $("input[name='start-date']").val();
-        const endDate = $("input[name='end-date']").val();
+        const startDate = new Date($("input[name='start-date']").val());
+        const endDate = new Date($("input[name='end-date']").val());
         getData(postCode, startDate, endDate);
     }))
 };
@@ -54,16 +54,19 @@ function getData(postCode, startDate, endDate) {
 
 // function to check start and end date
 function checkDates(responseJson,startDate, endDate) {
-    let start = new Date(startDate)
-    let end = new Date(endDate)
+    let start = startDate.getDate();
+    let end = endDate.getDate();
+
     for(let i = 0; i < `${responseJson["data"].length}`; i++) {
         let thisDate = new Date(`${responseJson["data"][i]["datetime"]}`)
-        if(thisDate >= start && thisDate <= end) {
-// set start time and thisdate time to equal, not on same time schedule. update start time to match thisdate time
+
+        let thisDay = thisDate.getDate();
+
+        if(thisDay >= start && thisDay <= end) {
             displayResults(i, responseJson)
         }
         else {
-
+            
         }
     }
 }
@@ -71,16 +74,41 @@ function checkDates(responseJson,startDate, endDate) {
 // function to render results 
 function displayResults(i, responseJson) {
     let tempHi = `${responseJson["data"][i]["max_temp"]}`
+
     let tempLo = `${responseJson["data"][i]["min_temp"]}`
-    $('.js-hi-lo').append(
-        `<li>${tempHi}/${tempLo}</li>`);
-        $('.result').removeClass('hidden');
-
-
+        
+        $('.js-hi-lo').append(`<li>${tempHi}/${tempLo}</li>`);
+    renderGear(tempHi, tempLo);
+    }
     // if(min_temp < 20, append winter items)
     // // append tempuratures to .js-hi-lo `li>[max_temp]/[min_temp]</li`
     // else if(min_temp > 50, append spring items etc )
     // // append tempuratures to .js-hi-lo `li>[max_temp]/[min_temp]</li`
+
+
+// function to render type of gear needed based on temp
+function renderGear(tempHi, tempLo) {
+    if(tempLo <= 20) {
+        
+    }
+    else if(tempLo <= 40) {
+
+    } 
+    else if(tempLo <= 60) {
+
+    }
+    else if(tempLo <= 80) {
+
+    }
+    else if(tempLo <= 100) {
+
+    }
+    else {
+
+    }
+
+
+    $('.result').removeClass('hidden');
 }
 
 // reset button
