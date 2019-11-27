@@ -32,7 +32,8 @@ function formatQuery(params) {
 function getData(postCode, startDate, endDate) {
     const params = {
         key: apiKey,
-        postal_code: postCode
+        postal_code: postCode,
+        units: 'I'
     }
     const queryString = formatQuery(params)
     const url = baseUrl + '?' + queryString;
@@ -62,7 +63,7 @@ function checkDates(responseJson,startDate, endDate) {
 
         let thisDay = thisDate.getDate();
 
-        if(thisDay >= start && thisDay <= end) {
+        if(thisDay >= start & thisDay <= end) {
             displayResults(i, responseJson)
         }
         else {
@@ -74,22 +75,20 @@ function checkDates(responseJson,startDate, endDate) {
 // function to render results 
 function displayResults(i, responseJson) {
     let tempHi = `${responseJson["data"][i]["max_temp"]}`
-
     let tempLo = `${responseJson["data"][i]["min_temp"]}`
         
-        $('.js-hi-lo').append(`<li>${tempHi}/${tempLo}</li>`);
+    $('.js-hi-lo').append(`<li>${tempHi}/${tempLo}</li>`);
     renderGear(tempHi, tempLo);
     }
-    // if(min_temp < 20, append winter items)
-    // // append tempuratures to .js-hi-lo `li>[max_temp]/[min_temp]</li`
-    // else if(min_temp > 50, append spring items etc )
-    // // append tempuratures to .js-hi-lo `li>[max_temp]/[min_temp]</li`
 
 
 // function to render type of gear needed based on temp
 function renderGear(tempHi, tempLo) {
     if(tempLo <= 20) {
-        
+        $('.js-gear-items').append(
+        //    use hidden class and display upon result or replace the ul content with a new template?
+
+        )
     }
     else if(tempLo <= 40) {
 
