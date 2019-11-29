@@ -1,5 +1,6 @@
-const baseUrl = 'https://api.weatherbit.io/v2.0/forecast/daily'
-const apiKey = '1f02fa7f33fd4eb9b8c87429b31880a1'
+const BASE_URL = 'https://api.weatherbit.io/v2.0/forecast/daily'
+const APIKEY = '1f02fa7f33fd4eb9b8c87429b31880a1'
+
 
 // function to handle start click
 function handleStart() {
@@ -14,40 +15,42 @@ function handleStart() {
 function watchForm() {
     $('.js-submit').on('click', (event => {
         event.preventDefault();
-        const postCode = $("input[name='zip-code']").val();
-        const startDate = new Date($("input[name='start-date']").val());
-        const endDate = new Date($("input[name='end-date']").val());
+        let postCode = $("input[name='zip-code']").val();
+        let startDate = new Date($("input[name='start-date']").val());
+        let endDate = new Date($("input[name='end-date']").val());
         getData(postCode, startDate, endDate);
     }))
 };
 
 // function to format query
 function formatQuery(params) {
-    const queryItem = Object.keys(params).map(
+    let queryItem = Object.keys(params).map(
         key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     return queryItem.join('&')
 }
 
 // function to fetch from API
 function getData(postCode, startDate, endDate) {
-    const params = {
-        key: apiKey,
+    let params = {
+        key: APIKEY,
         postal_code: postCode,
         units: 'I'
     }
-    const queryString = formatQuery(params)
-    const url = baseUrl + '?' + queryString;
+    let queryString = formatQuery(params)
+    let url = (`${BASE_URL}?${queryString}`);
     console.log(url);
 
     fetch(url)
         .then(response => {
             if(response.ok) {
-            return response.json();
+                return response.json();
             }
-            throw new Error(response.statusText);
+            else {
+                throw new Error(response.statusText);
+            }
         })
         .then(responseJson => checkDates(responseJson, startDate, endDate))
-       .catch(err => {
+        .catch(err => {
             $('.js-error-msg').text(`Something went wrong: ${err.message}`)
         })
 };
@@ -63,7 +66,7 @@ function checkDates(responseJson,startDate, endDate) {
 
         let thisDay = thisDate.getDate();
 
-        if(thisDay >= start & thisDay <= end) {
+        if(thisDay >= start && thisDay <= end) {
             displayResults(i, responseJson)
         }
         else {
@@ -71,7 +74,7 @@ function checkDates(responseJson,startDate, endDate) {
         }
     }
 }
-
+// create string or array with temp values then displayResults once
 // function to render results 
 function displayResults(i, responseJson) {
     let tempHi = `${responseJson["data"][i]["max_temp"]}`
@@ -79,7 +82,7 @@ function displayResults(i, responseJson) {
         
     $('.js-hi-lo').append(`<li>${tempHi}/${tempLo}</li>`);
     renderGear(tempHi, tempLo);
-    }
+}
 
 
 // function to render type of gear needed based on temp
@@ -138,3 +141,4 @@ function runProg() {
 }
 
 $(runProg);
+
