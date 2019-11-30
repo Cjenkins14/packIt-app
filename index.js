@@ -71,7 +71,7 @@ function checkDates(responseJson,startDate, endDate) {
             renderGear(i, responseJson)
         }
         else {
-            
+            $('.result').removeClass('hidden');
         }
     }
     
@@ -95,24 +95,45 @@ function renderGear(i, responseJson) {
 
     if(snowFall >= 6) {
         $('.js-gear-items').append(
-        //    use hidden class and display upon result or replace the ul content with a new template?
-
+            `<li>Snow Pants</li>
+            <li>Winter Jacket</li>`
         )
     }
-    else if(rainFall === true) {
-        $('.js-gear-items').append(raingear)
+    if(rainFall === true) {
+        $('.js-gear-items').append(
+            `<li>Rain Jacket</li>
+            <li>Rain Boots</li>`
+        )
     }
-    else if(tempLo <= 40) {
-        $('.js-gear-items').append(coldweathergear)
+    if(tempLo <= 20) {
+        $('.js-gear-items').append(
+            `<li></li>`
+        )
     } 
+    else if(tempLo <= 40) {
+        $('.js-gear-items').append(
+            `<li></li>`
+        )
+    }
+    else if(tempLo <= 50) {
+        $('.js-gear-items').append(
+            `<li></li>`
+        )
+    }
     else if(tempLo <= 60) {
-        $('.js-gear-items').append(averagedaygear)
+        $('.js-gear-items').append(
+            `<li></li>`
+        )
     }
     else if(tempLo <= 80) {
-        $('.js-gear-items').append(warmweathergear)
+        $('.js-gear-items').append(
+            `<li></li>`
+        )
     }
     else if(tempLo <= 110) {
-        $('.js-gear-items').append(hotweather)
+        $('.js-gear-items').append(
+            `<li></li>`
+        )
     }
     else {
 
