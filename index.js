@@ -58,59 +58,65 @@ function getData(postCode, startDate, endDate) {
 
 // function to check start and end date
 function checkDates(responseJson,startDate, endDate) {
-    let start = startDate.getDate();
-    let end = endDate.getDate();
+    let start = startDate
+    let end = endDate
 
     for(let i = 0; i < `${responseJson["data"].length}`; i++) {
         let thisDate = new Date(`${responseJson["data"][i]["datetime"]}`)
 
-        let thisDay = thisDate.getDate();
+        let thisDay = new Date(thisDate.setHours(00));
 
         if(thisDay >= start && thisDay <= end) {
-            displayResults(i, responseJson)
+            renderTemps(i, responseJson)
+            renderGear(i, responseJson)
         }
         else {
             
         }
     }
+    
 }
 // create string or array with temp values then displayResults once
 // function to render results 
-function displayResults(i, responseJson) {
+function renderTemps(i, responseJson) {
     let tempHi = `${responseJson["data"][i]["max_temp"]}`
     let tempLo = `${responseJson["data"][i]["min_temp"]}`
         
     $('.js-hi-lo').append(`<li>${tempHi}/${tempLo}</li>`);
-    renderGear(tempHi, tempLo);
 }
 
 
 // function to render type of gear needed based on temp
-function renderGear(tempHi, tempLo) {
-    if(tempLo <= 20) {
+function renderGear(i, responseJson) {
+    let tempHi = `${responseJson["data"][i]["max_temp"]}`
+    let tempLo = `${responseJson["data"][i]["min_temp"]}`
+    let snowFall = `${responseJson["data"][i]["snow_depth"]}`
+    let rainFall = `${responseJson["data"][i]["precip"]}`
+
+    if(snowFall >= 6) {
         $('.js-gear-items').append(
         //    use hidden class and display upon result or replace the ul content with a new template?
 
         )
     }
+    else if(rainFall === true) {
+        $('.js-gear-items').append(raingear)
+    }
     else if(tempLo <= 40) {
-
+        $('.js-gear-items').append(coldweathergear)
     } 
     else if(tempLo <= 60) {
-
+        $('.js-gear-items').append(averagedaygear)
     }
     else if(tempLo <= 80) {
-
+        $('.js-gear-items').append(warmweathergear)
     }
-    else if(tempLo <= 100) {
-
+    else if(tempLo <= 110) {
+        $('.js-gear-items').append(hotweather)
     }
     else {
 
     }
-
-
-    $('.result').removeClass('hidden');
 }
 
 // reset button
