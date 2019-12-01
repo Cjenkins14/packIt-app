@@ -1,5 +1,6 @@
 const BASE_URL = 'https://api.weatherbit.io/v2.0/forecast/daily'
 const APIKEY = '1f02fa7f33fd4eb9b8c87429b31880a1'
+let itemList = [];
 
 
 // function to handle start click
@@ -68,13 +69,13 @@ function checkDates(responseJson,startDate, endDate) {
 
         if(thisDay >= start && thisDay <= end) {
             renderTemps(i, responseJson)
-            renderGear(i, responseJson)
+            let itemList = findGear(i, responseJson)
         }
-        else {
-            $('.result').removeClass('hidden');
+        else { 
         }
     }
-    
+    sortRenderGear(itemList);
+    $('.result').removeClass('hidden');
 }
 // create string or array with temp values then displayResults once
 // function to render results 
@@ -87,83 +88,78 @@ function renderTemps(i, responseJson) {
 
 
 // function to render type of gear needed based on temp
-function renderGear(i, responseJson) {
+function findGear(i, responseJson) {
     let tempHi = `${responseJson["data"][i]["max_temp"]}`
     let tempLo = `${responseJson["data"][i]["min_temp"]}`
     let snowFall = `${responseJson["data"][i]["snow_depth"]}`
     let rainFall = `${responseJson["data"][i]["precip"]}`
+    
 
     if(snowFall >= 6) {
-        $('.js-gear-items').append(
+        $(itemList).append(
             `<li>Snow Pants</li>
             <li>Winter Jacket</li>`
         )
     }
     if(rainFall === true) {
-        $('.js-gear-items').append(
+        $(itemList).push(
             `<li>Rain Jacket</li>
             <li>Rain Boots</li>`
         )
     }
     if(tempLo <= 20) {
-        $('.js-gear-items').append(
-            `<li>Base layers</li>
-            <li>Wool Shirt</li>
-            <li>Pants</li>
-            <li>Fleece Jacket</li>
-            <li>Beanie</li>
-            <li>Gloves</li>
-            <li>Boots</li>`
+        (itemList).push(
+            "Base layers", "Wool Shirt", "Pants", "Fleece Jacket", "Beanie", "Gloves", "Boots"
         )
     } 
     else if(tempLo <= 40) {
-        $('.js-gear-items').append(
-            `<li>Base layers</li>
-            <li>Wool Shirt</li>
-            <li>Pants</li>
-            <li>Beanie</li>
-            <li>Gloves</li>
-            <li>Boots</li>`
+        (itemList).push(
+            "Base layers", "Wool Shirt", "Pants", "Beanie", "Gloves", "Boots"
         )
     }
     else if(tempLo <= 50) {
-        $('.js-gear-items').append(
-            `<li>Vest</li>
-            <li>Long sleeve shirt</li>
-            <li>Pants</li>
-            <li>Shoes</li>`
+        (itemList).push(
+            "vest", "Long sleeve shirt", "Pants", "Shoes"
         )
     }
     else if(tempLo <= 60) {
-        $('.js-gear-items').append(
-            `<li>T-shirt</li>
-            <li>Flannel</li>
-            <li>Pants</li>
-            <li>Shoes</li>`
+        (itemList).push(
+            "Tshirt", "Flannel", "Pants", "Shoes"
         )
     }
     else if(tempLo <= 80) {
-        $('.js-gear-items').append(
-            `<li>Shorts</li>
-            <li>T-shirt</li>
-            <li>Shoes</li>
-            <li>Hats</li>
-            <li>Sunglasses</li>`
+        (itemList).push(
+            "T-shirt", "Shorts", "Shoes", "Hats", "Sunglasses"
         )
     }
     else if(tempLo <= 110) {
-        $('.js-gear-items').append(
-            `<li>Shorts</li>
-            <li>T-shirt</li>
-            <li>Shoes</li>
-            <li>Hats</li>
-            <li>Sunglasses</li>`
+        (itemList).push(
+            "T-shirt", "Shorts", "Shoes", "Hats", "Sunglasses"
         )
     }
     else {
 
     }
+    return itemList;
 }
+
+function sortRenderGear(itemList) {
+      let gearList = removeDuplicate(itemList);
+      console.log(gearList);
+
+    for(i = 0; i < gearList.length; i++) {
+        $('.js-gear-items').append(
+            `<li>${gearList[i]}</li>`
+        )
+    };
+}
+
+function removeDuplicate(itemList){
+    let gearList = Array.from(new Set(itemList))
+    return gearList
+}
+
+
 
 // reset button
 function nowReset() {
