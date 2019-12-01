@@ -107,32 +107,57 @@ function renderGear(i, responseJson) {
     }
     if(tempLo <= 20) {
         $('.js-gear-items').append(
-            `<li></li>`
+            `<li>Base layers</li>
+            <li>Wool Shirt</li>
+            <li>Pants</li>
+            <li>Fleece Jacket</li>
+            <li>Beanie</li>
+            <li>Gloves</li>
+            <li>Boots</li>`
         )
     } 
     else if(tempLo <= 40) {
         $('.js-gear-items').append(
-            `<li></li>`
+            `<li>Base layers</li>
+            <li>Wool Shirt</li>
+            <li>Pants</li>
+            <li>Beanie</li>
+            <li>Gloves</li>
+            <li>Boots</li>`
         )
     }
     else if(tempLo <= 50) {
         $('.js-gear-items').append(
-            `<li></li>`
+            `<li>Vest</li>
+            <li>Long sleeve shirt</li>
+            <li>Pants</li>
+            <li>Shoes</li>`
         )
     }
     else if(tempLo <= 60) {
         $('.js-gear-items').append(
-            `<li></li>`
+            `<li>T-shirt</li>
+            <li>Flannel</li>
+            <li>Pants</li>
+            <li>Shoes</li>`
         )
     }
     else if(tempLo <= 80) {
         $('.js-gear-items').append(
-            `<li></li>`
+            `<li>Shorts</li>
+            <li>T-shirt</li>
+            <li>Shoes</li>
+            <li>Hats</li>
+            <li>Sunglasses</li>`
         )
     }
     else if(tempLo <= 110) {
         $('.js-gear-items').append(
-            `<li></li>`
+            `<li>Shorts</li>
+            <li>T-shirt</li>
+            <li>Shoes</li>
+            <li>Hats</li>
+            <li>Sunglasses</li>`
         )
     }
     else {
