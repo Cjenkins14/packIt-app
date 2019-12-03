@@ -83,7 +83,9 @@ function renderTemps(i, responseJson) {
     let tempHi = `${responseJson["data"][i]["max_temp"]}`
     let tempLo = `${responseJson["data"][i]["min_temp"]}`
         
-    $('.js-hi-lo').append(`<li>${tempHi}/${tempLo}</li>`);
+    $('.js-hi-lo').append(`<li>${tempHi}&#176;<br>
+    ${tempLo}&#176;
+    </li>`);
 }
 
 
@@ -119,7 +121,7 @@ function findGear(i, responseJson) {
     }
     else if(tempLo <= 50) {
         (itemList).push(
-            "vest", "Long sleeve shirt", "Pants", "Shoes"
+            "Vest", "Long sleeve shirt", "Pants", "Shoes"
         )
     }
     else if(tempLo <= 60) {
@@ -163,7 +165,11 @@ function removeDuplicate(itemList){
 
 // reset button
 function nowReset() {
-
+    $('.js-reset').on('click', (event => {
+        $('#js-zip, #js-start-date, #js-end-date').empty()
+        $('.js-hi-lo').empty()
+        $('.js-gear-items').empty()
+    }))
 }
 
 // function to handle item click
