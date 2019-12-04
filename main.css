@@ -1,10 +1,58 @@
 * {
     box-sizing: border-box;
+    
+}
+
+body {
+    background: #F2994B;
+    
+    
 }
 
 .hidden {
     display: none;
 }
+
+h1 {
+    text-align: center;
+}
+
+input, button {
+    border-radius: 3px;
+}
+
+.home-img {
+    width: 70%;
+}
+
+p {
+    text-align: center;
+}
+
+.home {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+ul.js-hi-lo {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: space-between;
+    padding: 25px;
+}
+
+.js-gear-items {
+    columns: 2;
+
+}
+
+
 
 .js-gear-items {
     list-style: none;

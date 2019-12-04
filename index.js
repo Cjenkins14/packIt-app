@@ -9,7 +9,7 @@ function handleStart() {
         $('.user-input').removeClass('hidden');
         $('.home').addClass('hidden');
     })
-
+ console.log('handleStart ran')
 }
 
 // function to handle submit
@@ -21,13 +21,16 @@ function watchForm() {
         let endDate = new Date($("input[name='end-date']").val());
         getData(postCode, startDate, endDate);
     }))
+    console.log('watchForm ran')
 };
 
 // function to format query
 function formatQuery(params) {
     let queryItem = Object.keys(params).map(
         key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+        console.log('formatQuery ran')
     return queryItem.join('&')
+    
 }
 
 // function to fetch from API
@@ -54,6 +57,7 @@ function getData(postCode, startDate, endDate) {
         .catch(err => {
             $('.js-error-msg').text(`Something went wrong: ${err.message}`)
         })
+        console.log('getData ran')
 };
        
 
@@ -75,6 +79,7 @@ function checkDates(responseJson,startDate, endDate) {
         }
     }
     sortRenderGear(itemList);
+    console.log('checkDates ran')
     $('.result').removeClass('hidden');
 }
 // create string or array with temp values then displayResults once
@@ -86,6 +91,7 @@ function renderTemps(i, responseJson) {
     $('.js-hi-lo').append(`<li>${tempHi}&#176;<br>
     ${tempLo}&#176;
     </li>`);
+    console.log('renderTemps ran')
 }
 
 
@@ -142,6 +148,7 @@ function findGear(i, responseJson) {
     else {
 
     }
+    console.log('findGear ran')
     return itemList;
 }
 
@@ -154,10 +161,12 @@ function sortRenderGear(itemList) {
             `<li>${gearList[i]}</li>`
         )
     };
+    console.log('sortRenderGear ran')
 }
 
 function removeDuplicate(itemList){
     let gearList = Array.from(new Set(itemList))
+    console.log('removeDuplicate ran')
     return gearList
 }
 
@@ -170,6 +179,7 @@ function nowReset() {
         $('.js-hi-lo').empty()
         $('.js-gear-items').empty()
     }))
+    console.log('reset ran')
 }
 
 // function to handle item click
