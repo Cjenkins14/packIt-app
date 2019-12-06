@@ -63,19 +63,21 @@ function getData(postCode, startDate, endDate) {
 
 // function to check start and end date
 function checkDates(responseJson,startDate, endDate) {
-    let start = startDate
-    let end = endDate
 
-    for(let i = 0; i < `${responseJson["data"].length}`; i++) {
+    for(let i = 0; i < responseJson["data"].length; i++) {
         let thisDate = new Date(`${responseJson["data"][i]["datetime"]}`)
-
         let thisDay = new Date(thisDate.setHours(00));
 
-        if(thisDay >= start && thisDay <= end) {
+        console.log('date and time after date format', thisDay);
+        console.log('start date', startDate);
+        console.log('end date', endDate);
+
+        if(thisDay >= startDate && thisDay <= endDate) {
             renderTemps(i, responseJson)
             let itemList = findGear(i, responseJson)
         }
         else { 
+            console.log('Days not within range')
         }
     }
     sortRenderGear(itemList);
@@ -200,7 +202,7 @@ function displayProducts() {
 function runProg() {
     handleStart();
     watchForm();
-    checkDates();
+    
     
 }
 
