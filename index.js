@@ -106,7 +106,7 @@ function findGear(i, responseJson) {
     
 
     if(snowFall >= 6) {
-        $(itemList).append(
+        $(itemList).push(
             `<li>Snow Pants</li>
             <li>Winter Jacket</li>`
         )
@@ -148,7 +148,7 @@ function findGear(i, responseJson) {
         )
     }
     else {
-
+        console.log('gear not found')
     }
     console.log('findGear ran')
     return itemList;
