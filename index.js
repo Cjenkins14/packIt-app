@@ -46,7 +46,7 @@ function getData(postCode, startDate, endDate) {
 
     fetch(url)
         .then(response => {
-            if(response.ok) {
+            if(response.ok && response.status !== 204) {
                 return response.json();
             }
             else {
@@ -54,8 +54,9 @@ function getData(postCode, startDate, endDate) {
             }
         })
         .then(responseJson => checkDates(responseJson, startDate, endDate))
-        .catch(err => {
-            $('.js-error-msg').text(`Something went wrong: ${err.message}`)
+        .catch(error => {
+            $('.js-error-msg').text(`Something went wrong: ${error.message}. Please try again later.`)
+            $('.js-error-msg').removeClass('hidden')
         })
         console.log('getData ran')
 };
@@ -179,11 +180,10 @@ function removeDuplicate(itemList){
 function nowClear() {
     $('.js-clear').on('click', function(event) {
         if(confirm('Want to clear?')){
+            event.preventDefault();
             $('form input[type=text]').val('');
-            // $('.js-hi-lo, .js-gear-items').empty()
-            // $('results').addClass('hidden');
-            // $('home').addClass('hidden');
-            // $('.user-input').removeClass('hidden');
+            $('form input[type=date]').val('');
+            $('.js-hi-lo, .js-gear-items').empty();
         }
     })
     console.log('reset ran')
