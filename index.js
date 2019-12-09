@@ -83,6 +83,7 @@ function checkDates(responseJson,startDate, endDate) {
     sortRenderGear(itemList);
     console.log('checkDates ran')
     $('.result').removeClass('hidden');
+    nowClear();
 }
 // create string or array with temp values then displayResults once
 // function to render results 
@@ -175,18 +176,24 @@ function removeDuplicate(itemList){
 
 
 // reset button
-function nowReset() {
-    $('.js-reset').on('click', (event => {
-        $('#js-zip, #js-start-date, #js-end-date').empty()
-        $('.js-hi-lo').empty()
-        $('.js-gear-items').empty()
-    }))
+function nowClear() {
+    $('.js-clear').on('click', function(event) {
+        if(confirm('Want to clear?')){
+            $('form input[type=text]').val('');
+            // $('.js-hi-lo, .js-gear-items').empty()
+            // $('results').addClass('hidden');
+            // $('home').addClass('hidden');
+            // $('.user-input').removeClass('hidden');
+        }
+    })
     console.log('reset ran')
 }
 
 // function to handle item click
 function getItem() {
-
+$('.js-gear-items').on('click', 'li', event => {
+    let thisItem = $('li').val();
+})
 }
 
 // function to fetch from API
