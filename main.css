@@ -4,10 +4,20 @@
 }
 
 html {
-    background: url("Images/lakeofclouds.jpg"), url("Images/f2994b.png");
-    background-repeat: no-repeat, no-repeat;
-    background-size: 100% 50%;
-    background-position: top, bottom;
+    background-image: 
+    url("Images/lakeoftheclouds.jpg"),
+    url("Images/orange-bg.png");
+    background-repeat: no-repeat;
+    background-size:
+    100% 50%, 100% 50%;
+    background-position: 
+    top right,
+    bottom left;
+
+}
+
+body {
+    
     
 }
 
