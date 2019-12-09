@@ -3,9 +3,11 @@
     
 }
 
-body {
-    background: #F2994B;
-    
+html {
+    background: url("Images/lakeofclouds.jpg"), url("Images/f2994b.png");
+    background-repeat: no-repeat, no-repeat;
+    background-size: 100% 50%;
+    background-position: top, bottom;
     
 }
 
