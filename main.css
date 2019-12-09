@@ -4,21 +4,36 @@
 }
 
 html {
-    background-image: 
-    url("Images/lakeoftheclouds.jpg"),
-    url("Images/orange-bg.png");
-    background-repeat: no-repeat;
-    background-size:
-    100% 50%, 100% 50%;
-    background-position: 
-    top right,
-    bottom left;
+    height: 100%;
+    
 
 }
 
 body {
     
-    
+}
+
+.top {
+    width: 100%;
+    background-image: url("Images/lakeoftheclouds.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bottom {
+    width: 100%;
+    background-image: url("Images/orange-bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.top, .bottom {
+    height: 50vh;
 }
 
 .hidden {
