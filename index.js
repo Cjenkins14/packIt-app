@@ -19,7 +19,13 @@ function watchForm() {
         let postCode = $("input[name='zip-code']").val();
         let startDate = new Date($("input[name='start-date']").val());
         let endDate = new Date($("input[name='end-date']").val());
+        if(endDate.getDate() - startDate.getDate() > 7) {
+            $('.js-error-msg').text('Sorry, please restrict input to 7 days');
+            $('.js-error-msg').removeClass('hidden');
+        } else {
         getData(postCode, startDate, endDate);
+    }
+    
     }))
     console.log('watchForm ran')
 };
