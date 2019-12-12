@@ -16,6 +16,7 @@ function handleStart() {
 function watchForm() {
     $('.js-submit').on('click', (event => {
         event.preventDefault();
+        $('.js-error-msg').text('');
         let postCode = $("input[name='zip-code']").val();
         let startDate = new Date($("input[name='start-date']").val());
         let endDate = new Date($("input[name='end-date']").val());
@@ -95,8 +96,8 @@ function checkDates(responseJson,startDate, endDate) {
 // create string or array with temp values then displayResults once
 // function to render results 
 function renderTemps(i, responseJson) {
-    let tempHi = `${responseJson["data"][i]["max_temp"]}`
-    let tempLo = `${responseJson["data"][i]["min_temp"]}`
+    let tempHi = Math.round(`${responseJson["data"][i]["max_temp"]}`);
+    let tempLo = Math.round(`${responseJson["data"][i]["min_temp"]}`);
         
     $('.js-hi-lo').append(`<li>${tempHi}&#176;<br>
     ${tempLo}&#176;
@@ -114,13 +115,13 @@ function findGear(i, responseJson) {
     
 
     if(snowFall >= 6) {
-        $(itemList).push(
+        (itemList).push(
             `<li>Snow Pants</li>
             <li>Winter Jacket</li>`
         )
     }
     if(rainFall === true) {
-        $(itemList).push(
+        (itemList).push(
             `<li>Rain Jacket</li>
             <li>Rain Boots</li>`
         )

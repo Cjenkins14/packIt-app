@@ -7,6 +7,10 @@ body {
     position: relative;
 }
 
+html {
+    height: auto;
+}
+
 .main {
     background: #05A5F2;
     border-radius: 3px;;
@@ -80,7 +84,11 @@ ul.js-hi-lo {
     flex-direction: row;
     list-style: none;
     justify-content: space-between;
-    
+    padding: 0px;
+}
+
+.js-hi-lo > li {
+    border: 1px solid black;
 }
 
 .js-gear-items {
@@ -102,4 +110,18 @@ ul.js-hi-lo {
 .start {
     border: none;
     background: none;
+}
+
+/* Animations */
+.home {
+    position: relative;
+}
+.start-arrow {
+    height: 25px;
+    width: 25px;
+    position: absolute;
+}
+.start:active .start-arrow{
+transtition: ;
+transition-duration: .2s;
 }
