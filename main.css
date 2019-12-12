@@ -12,10 +12,10 @@ body {
     border-radius: 3px;;
     width: auto;
     height: auto;
-    left: 20%;
-    right: 20%;
+    left: 15%;
+    right: 15%;
     top: 30%;
-    bottom: 30%;
+    
 
     position: absolute;
 }
@@ -57,8 +57,8 @@ input, button {
     border-radius: 3px;
 }
 
-.home-img {
-    width: 70%;
+.home {
+    padding-top: 10%;
 }
 
 p {
@@ -92,4 +92,14 @@ ul.js-hi-lo {
 
 .js-gear-items {
     list-style: none;
+}
+
+#start-arrow {
+    height: 25px;
+    width: 25px;
+}
+
+.start {
+    border: none;
+    background: none;
 }
