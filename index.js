@@ -68,7 +68,6 @@ function getData(postCode, startDate, endDate) {
         console.log('getData ran')
 };
        
-
 // function to check start and end date
 function checkDates(responseJson,startDate, endDate) {
 
@@ -93,8 +92,8 @@ function checkDates(responseJson,startDate, endDate) {
     $('.result').removeClass('hidden');
     nowClear();
 }
-// create string or array with temp values then displayResults once
-// function to render results 
+
+// function to render temps
 function renderTemps(i, responseJson) {
     let tempHi = Math.round(`${responseJson["data"][i]["max_temp"]}`);
     let tempLo = Math.round(`${responseJson["data"][i]["min_temp"]}`);
@@ -181,8 +180,6 @@ function removeDuplicate(itemList){
     return gearList
 }
 
-
-
 // reset button
 function nowClear() {
     $('.js-clear').on('click', function(event) {
@@ -196,29 +193,12 @@ function nowClear() {
     console.log('reset ran')
 }
 
-// function to handle item click
-function getItem() {
-$('.js-gear-items').on('click', 'li', event => {
-    let thisItem = $('li').val();
-})
-}
-
-// function to fetch from API
-function getProduct() {
-
-}
-
-// function to render products
-function displayProducts() {
-
-}
-
-function runProg() {
+function runProgram() {
     handleStart();
     watchForm();
     
     
 }
 
-$(runProg);
+$(runProgram);
 
