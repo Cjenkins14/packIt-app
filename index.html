@@ -1,67 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>packIt App</title>
     <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Lilita+One&display=swap" rel="stylesheet">
 </head>
 
 <body>
-<div class="wrapper">
-<div class="top"></div>
-<div class="main">
-    <header>
-        <h1>PackIt</h1>
-    </header>
-
-    <div class="home">
-        
-        <p>Gear to get you there, right here</p>
-        <button class="start"><img class=start-arrow src="Images/arrow.png" alt="start arrow">
-        </button>
-        
-    </div> <!--home div-->
-    
-
-    <div class="user-input hidden">
-        <form>
+    <main>
+        <header>
+            <h1>PackIt</h1>
+        </header>
+        <section id="home">
+            <p>Gear to get you there, right here</p>
+            <button class="start"><img src="Images/arrow.png" alt="start arrow">
+      </button>
+        </section>
+        <form class="hidden">
             <label for="zip-code">Postal Code</label>
             <input type="text" name="zip-code" id="js-zip">
-
             <label for="start-date">Start Date</label>
-            <input type="date"  name="start-date" id="js-start-date">
-
+            <input type="date" name="start-date" id="js-start-date">
             <label for="end-date">End Date</label>
             <input type="date" name="end-date" id="js-end-date">
-
             <button type="submit" class="js-submit">Submit</button>
-            
             <button class="js-clear">Clear</button>
-
             <div class="js-error-msg hidden"></div>
         </form>
-    </div> <!--input div-->
-
-    <div class="result hidden">
-        <h3>Daily Highs and Lows</h3>
-        <ul class="js-hi-lo">
-        </ul>
-
-        <h3>Checklist</h3>
-
-        <ul class="js-gear-items">
-            <li></li>
-        </ul>
-    </div> <!--results div-->
-</div> <!--main div-->
-
-    
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>    
+        <section id="results" class="hidden">
+            <h2>Daily Highs and Lows</h2>
+            <ul class="js-hi-lo"></ul>
+            <h2>Checklist</h2>
+            <ul class="js-gear-items"></ul>
+        </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="index.js"></script>
-<div class="bottom"></div>
-</div> <!--wrapper div-->
 </body>
 
 </html>
