@@ -1,7 +1,5 @@
 const BASE_URL = 'https://api.weatherbit.io/v2.0/forecast/daily'
 const APIKEY = '1f02fa7f33fd4eb9b8c87429b31880a1'
-const GEAR_URL = 'https://cors-anywhere.herokuapp.com/http://api.sierratradingpost.com/api/1.0/products/search'
-const gearAPIKey = 'api_key=f6372250fe06547d370dc83969dc5833'
 let itemList = [];
 
 
@@ -11,7 +9,7 @@ function handleStart() {
         $('form').removeClass('hidden');
         $('#home').addClass('hidden');
     })
-    console.log('handleStart ran')
+    
 }
 
 // function to handle submit
@@ -30,7 +28,7 @@ function watchForm() {
         }
 
     }))
-    console.log('watchForm ran')
+    c
 };
 
 // function to format query
@@ -66,7 +64,7 @@ function getData(postCode, startDate, endDate) {
             $('.js-error-msg').text(`Something went wrong: ${error.message}. Please try again later.`)
             $('.js-error-msg').removeClass('hidden')
         })
-    console.log('getData ran')
+    
 };
 
 // function to check start and end date
@@ -101,7 +99,7 @@ function renderTemps(i, responseJson) {
     $('.js-hi-lo').append(`<li>${tempHi}&#176;<br>
     ${tempLo}&#176;
     </li>`);
-    console.log('renderTemps ran')
+    
 }
 
 
@@ -152,7 +150,7 @@ function findGear(i, responseJson) {
     } else {
         console.log('gear not found')
     }
-    console.log('findGear ran')
+    
     return itemList;
 }
 
@@ -165,7 +163,7 @@ function sortRenderGear(itemList) {
             `<li>${gearList[i]}</li>`
         )
     };
-    console.log('sortRenderGear ran')
+    
 }
 
 function removeDuplicate(itemList) {
@@ -184,39 +182,6 @@ function nowClear() {
             $('.js-hi-lo, .js-gear-items').empty();
         }
     })
-    console.log('reset ran')
-}
-
-function watchList() {
-    $('.js-gear-items').on('click', 'li', function(event) {
-        event.stopPropagation;
-        let gearItem = $(event.currentTarget).text()
-        formatGearQuery(gearItem);
-    })
-}
-
-function formatGearQuery(gearItem) {
-    searchTerm = gearItem.replace(/\s/g, "-");
-    let gearQuery = `${GEAR_URL}~${searchTerm}/?${gearAPIKey}`
-    buyGear(gearQuery);
-}
-
-function buyGear(gearQuery) {
-    fetch(gearQuery) 
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error(response.statusText);
-            }
-        })
-        .then(responseJson => renderProducts(responseJson))
-        .catch(error => {
-            $('.js-error-msg').text(`Something went wrong: ${error.message}. Please try again later.`)
-        })
-};
-
-function renderProducts(responseJson) {
     
 }
 
