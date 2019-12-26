@@ -1,7 +1,7 @@
 # PackIt-app
 https://cjenkins14.github.io/packIt-app/
 
-![Landing page] (/Images/landing-screen.png)
+![Landing page] (https://github.com/Cjenkins14/packIt-app/blob/master/Images/landing-screen.png)
 
 ![Input screen] (/Images/input-screen.png)
 
