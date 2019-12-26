@@ -1,6 +1,6 @@
 const BASE_URL = 'https://api.weatherbit.io/v2.0/forecast/daily'
 const APIKEY = '1f02fa7f33fd4eb9b8c87429b31880a1'
-const GEAR_URL = 'http://api.sierratradingpost.com/api/1.0/products/search'
+const GEAR_URL = 'https://cors-anywhere.herokuapp.com/http://api.sierratradingpost.com/api/1.0/products/search'
 const gearAPIKey = 'api_key=f6372250fe06547d370dc83969dc5833'
 let itemList = [];
 
@@ -210,13 +210,13 @@ function buyGear(gearQuery) {
                 throw new Error(response.statusText);
             }
         })
-        .then(responseJson => renderProducts())
+        .then(responseJson => renderProducts(responseJson))
         .catch(error => {
             $('.js-error-msg').text(`Something went wrong: ${error.message}. Please try again later.`)
         })
 };
 
-function renderProducts() {
+function renderProducts(responseJson) {
     
 }
 
