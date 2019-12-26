@@ -73,3 +73,6 @@ ul.js-hi-lo {
     columns: 2;
     list-style: none;
 }
+.js-gear-items > li:hover {
+    cursor: pointer;
+}

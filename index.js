@@ -1,5 +1,7 @@
 const BASE_URL = 'https://api.weatherbit.io/v2.0/forecast/daily'
 const APIKEY = '1f02fa7f33fd4eb9b8c87429b31880a1'
+const GEAR_URL = 'http://api.sierratradingpost.com/api/1.0/products/search'
+const gearAPIKey = 'api_key=f6372250fe06547d370dc83969dc5833'
 let itemList = [];
 
 
@@ -111,13 +113,13 @@ function findGear(i, responseJson) {
     let rainFall = `${responseJson["data"][i]["precip"]}`
 
 
-    if (snowFall >= 6) {
+    if (snowFall > 1) {
         (itemList).push(
             `<li>Snow Pants</li>
             <li>Winter Jacket</li>`
         )
     }
-    if (rainFall === true) {
+    if (rainFall == true) {
         (itemList).push(
             `<li>Rain Jacket</li>
             <li>Rain Boots</li>`
@@ -185,10 +187,43 @@ function nowClear() {
     console.log('reset ran')
 }
 
+function watchList() {
+    $('.js-gear-items').on('click', 'li', function(event) {
+        event.stopPropagation;
+        let gearItem = $(event.currentTarget).text()
+        formatGearQuery(gearItem);
+    })
+}
+
+function formatGearQuery(gearItem) {
+    searchTerm = gearItem.replace(/\s/g, "-");
+    let gearQuery = `${GEAR_URL}~${searchTerm}/?${gearAPIKey}`
+    buyGear(gearQuery);
+}
+
+function buyGear(gearQuery) {
+    fetch(gearQuery) 
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(response.statusText);
+            }
+        })
+        .then(responseJson => renderProducts())
+        .catch(error => {
+            $('.js-error-msg').text(`Something went wrong: ${error.message}. Please try again later.`)
+        })
+};
+
+function renderProducts() {
+    
+}
+
 function runProgram() {
     handleStart();
     watchForm();
-
+    watchList();
 
 }
 
