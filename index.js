@@ -185,7 +185,6 @@ function nowClear() {
 function runProgram() {
     handleStart();
     watchForm();
-    watchList();
 }
 
 $(runProgram);
