@@ -5,18 +5,18 @@ let itemList = [];
 
 // function to handle start click
 function handleStart() {
-    $('.start').on('click', function(event) {
+    $('.start').on('click', function (event) {
         $('form').removeClass('hidden');
         $('#home').addClass('hidden');
     })
-    
+
 }
 
 // function to handle submit
 function watchForm() {
     $('.js-submit').on('click', (event => {
         event.preventDefault();
-        $('.js-error-msg').text('');
+        resultReset();
         let postCode = $("input[name='zip-code']").val();
         let startDate = new Date($("input[name='start-date']").val());
         let endDate = new Date($("input[name='end-date']").val());
@@ -28,16 +28,20 @@ function watchForm() {
         }
 
     }))
-    c
+
 };
+
+// function to reset results
+function resultReset() {
+    $('.js-error-msg').text('');
+    $('.js-hi-lo, .js-gear-items').empty();
+}
 
 // function to format query
 function formatQuery(params) {
     let queryItem = Object.keys(params).map(
         key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
-    console.log('formatQuery ran')
-    return queryItem.join('&')
-
+    return queryItem.join('&');
 }
 
 // function to fetch from API
@@ -64,7 +68,7 @@ function getData(postCode, startDate, endDate) {
             $('.js-error-msg').text(`Something went wrong: ${error.message}. Please try again later.`)
             $('.js-error-msg').removeClass('hidden')
         })
-    
+
 };
 
 // function to check start and end date
@@ -73,11 +77,6 @@ function checkDates(responseJson, startDate, endDate) {
     for (let i = 0; i < responseJson["data"].length; i++) {
         let thisDate = new Date(`${responseJson["data"][i]["datetime"]}`)
         let thisDay = new Date(thisDate.setHours(00));
-
-        console.log('date and time after date format', thisDay);
-        console.log('start date', startDate);
-        console.log('end date', endDate);
-
         if (thisDay >= startDate && thisDay <= endDate) {
             renderTemps(i, responseJson)
             let itemList = findGear(i, responseJson)
@@ -86,7 +85,6 @@ function checkDates(responseJson, startDate, endDate) {
         }
     }
     sortRenderGear(itemList);
-    console.log('checkDates ran')
     $('#results').removeClass('hidden');
     nowClear();
 }
@@ -99,7 +97,7 @@ function renderTemps(i, responseJson) {
     $('.js-hi-lo').append(`<li>${tempHi}&#176;<br>
     ${tempLo}&#176;
     </li>`);
-    
+
 }
 
 
@@ -150,7 +148,7 @@ function findGear(i, responseJson) {
     } else {
         console.log('gear not found')
     }
-    
+
     return itemList;
 }
 
@@ -163,18 +161,17 @@ function sortRenderGear(itemList) {
             `<li>${gearList[i]}</li>`
         )
     };
-    
+
 }
 
 function removeDuplicate(itemList) {
     let gearList = Array.from(new Set(itemList))
-    console.log('removeDuplicate ran')
     return gearList
 }
 
 // reset button
 function nowClear() {
-    $('.js-clear').on('click', function(event) {
+    $('.js-clear').on('click', function (event) {
         if (confirm('Are you sure?')) {
             event.preventDefault();
             $('form input[type=text]').val('');
@@ -182,14 +179,13 @@ function nowClear() {
             $('.js-hi-lo, .js-gear-items').empty();
         }
     })
-    
+
 }
 
 function runProgram() {
     handleStart();
     watchForm();
     watchList();
-
 }
 
 $(runProgram);
