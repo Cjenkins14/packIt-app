@@ -11,26 +11,26 @@
 </head>
 
 <body>
-    <main>
-        <header>
+    <main role="main">
+        <header role="banner">
             <h1>PackIt</h1>
         </header>
         <section id="home">
             <h3>Gear to get you there, right here</h3>
-            <button class="start"><img src="Images/arrow.png" alt="start arrow"></button>
+            <button role="button" class="start"><img src="Images/arrow.png" alt="start arrow"></button>
         </section>
         <form class="hidden">
             <label for="js-zip">Postal Code</label>
-            <input type="text" name="zip-code" id="js-zip">
+            <input type="text" role="textbox" name="zip-code" id="js-zip">
             <label for="js-start-date">Start Date</label>
             <input type="date" name="start-date" id="js-start-date">
             <label for="js-end-date">End Date</label>
             <input type="date" name="end-date" id="js-end-date">
-            <button type="submit" class="js-submit">Submit</button>
-            <button class="js-clear">Clear</button>
-            <div class="js-error-msg hidden"></div>
+            <button role="button" type="submit" class="js-submit">Submit</button>
+            <button role="button" class="js-clear">Clear</button>
+            <div class="js-error-msg hidden" aria-live="polite"></div>
         </form>
-        <section id="results" class="hidden">
+        <section id="results" class="hidden" aira-live="polite">
             <h2>Daily Highs and Lows</h2>
             <ul class="js-hi-lo"></ul>
             <h2>Checklist</h2>
